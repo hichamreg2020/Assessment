@@ -1,5 +1,4 @@
 module "eks_cluser" {
-  create_eks                           = var.create_eks
   source                               = "terraform-aws-modules/eks/aws"
   version                              = "17.1.0"
   cluster_name                         = "kubeAssess"
