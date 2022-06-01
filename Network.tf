@@ -1,4 +1,4 @@
-module "vpc" {
+module "vpc_assess" {
   source = "terraform-aws-modules/vpc/aws"
 
   name = "Assess-VPC"
