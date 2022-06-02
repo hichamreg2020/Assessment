@@ -30,7 +30,7 @@ resource "kubernetes_deployment" "web" {
           }
 	  env_from {
             secret_ref {
-              name = "kubernetes_secret.assessment-db-credentials.name"
+              name = kubernetes_secret.assessment-db-credentials.name
               }
           }
 	}
