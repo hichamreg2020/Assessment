@@ -32,7 +32,14 @@ resource "aws_security_group" "AssessmentSG" {
 
 }
 
+resource "aws_db_subnet_group" "assessment" {
+  name       = "assessment"
+  subnet_ids = [module.vpc_assess.database_subnets]
 
+  tags = {
+    Name = "My DB subnet group"
+  }
+}
 resource "aws_db_instance" "assessment-db" {
   identifier             = "assessment-db"
   name                   = "assessmentdb"
@@ -45,6 +52,7 @@ resource "aws_db_instance" "assessment-db" {
   vpc_security_group_ids = [aws_security_group.AssessmentSG.id]
   username               = var.db_username
   password               = "${random_string.Assessment-db-password.result}"
+  db_subnet_group_name   = aws_db_subnet_group.assessment.name
 }
 
 
