@@ -28,6 +28,9 @@ resource "kubernetes_deployment" "web" {
           port {
             container_port = 80
           }
+		  env_from {
+		    secret_ref =  kubernetes_secret.assessment-db-credentials.name
+		  }
         }
       }
     }
@@ -51,13 +54,14 @@ resource "kubernetes_service" "web" {
     }
   }
 }
+
 resource "kubernetes_secret" "assessment-db-credentials" {
   metadata {
     name = "assessment-db-credentials"
   }
 
   data = {
-    username = "var.db_username"
+    username = var.db_username
     password = "${random_string.Assessment-db-password.result}"
   }
 
