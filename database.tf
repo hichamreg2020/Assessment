@@ -66,7 +66,7 @@ resource "aws_secretsmanager_secret_version" "secret" {
   secret_string = <<EOF
 {
   "PASSWORD": "${random_string.Assessment-db-password.result}"
-  "USERNAME": var.db_username
+  "USERNAME": ${var.db_username}
  }
 EOF
 
