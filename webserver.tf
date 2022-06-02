@@ -53,7 +53,7 @@ resource "kubernetes_service" "web" {
 }
 resource "kubernetes_secret" "assessment-db-credentials" {
   metadata {
-    name = "assesment_db_credentials"
+    name = "assessment-db-credentials"
   }
 
   data = {
