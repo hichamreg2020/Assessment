@@ -42,7 +42,7 @@ resource "kubernetes_service" "web" {
   }
   spec {
     selector = {
-      app = kubernetes_deployment.Assessment.spec.0.template.0.metadata.0.labels.app
+      app = kubernetes_deployment.web.spec.0.template.0.metadata.0.labels.app
     }
     type = "LoadBalancer"
     port {
