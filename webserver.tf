@@ -23,7 +23,7 @@ resource "kubernetes_deployment" "web" {
       }
       spec {
         container {
-          image = "tomcat:9.0"
+          image = "tomcat:8.0"
           name  = "web-container"
           port {
             container_port = 8080
