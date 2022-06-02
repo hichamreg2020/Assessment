@@ -71,5 +71,5 @@ resource "kubernetes_secret" "assessment-db-credentials" {
 }
 
 output "load_balancer_external_ip" {
-  value = "${kubernetes_service.web}"
+  value = "${kubernetes_service.web.status.0.load_balancer.0.ingress.0.hostname}"
 }
