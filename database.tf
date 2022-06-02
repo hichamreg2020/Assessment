@@ -33,9 +33,9 @@ resource "aws_security_group" "AssessmentSG" {
 }
 
 
-resource "aws_db_instance" "Assessment-db" {
-  identifier             = "Assessment-db"
-  name                   = "Assessment-db"
+resource "aws_db_instance" "assessment-db" {
+  identifier             = "assessment-db"
+  name                   = "assessment-db"
   instance_class         = "db.t2.micro"
   allocated_storage      = 5
   engine                 = "postgres"
