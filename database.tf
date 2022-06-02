@@ -34,7 +34,7 @@ resource "aws_security_group" "AssessmentSG" {
 
 resource "aws_db_subnet_group" "assessment" {
   name       = "assessment"
-  subnet_ids = [module.vpc_assess.database_subnets]
+  subnet_ids = module.vpc_assess.database_subnets[*].id
 
   tags = {
     Name = "My DB subnet group"
