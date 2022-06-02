@@ -51,3 +51,15 @@ resource "kubernetes_service" "web" {
     }
   }
 }
+resource "kubernetes_secret" "assesment_db_credentials" {
+  metadata {
+    name = "assesment_db_credentials"
+  }
+
+  data = {
+    username = "var.db_username"
+    password = "${random_string.Assessment-db-password.result}"
+  }
+
+  type = "kubernetes.io/basic-auth"
+}
