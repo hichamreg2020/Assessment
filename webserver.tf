@@ -26,7 +26,7 @@ resource "kubernetes_deployment" "web" {
           image = "tomcat:9.0"
           name  = "web-container"
           port {
-            container_port = 80
+            container_port = 8080
           }
 	  env_from {
             secret_ref {
@@ -52,7 +52,7 @@ resource "kubernetes_service" "web" {
     type = "LoadBalancer"
     port {
       port        = 80
-      target_port = 80
+      target_port = 8080
     }
   }
 }
