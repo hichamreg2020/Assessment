@@ -1,5 +1,4 @@
-resource "random_uuid" "tag" {
-}
+
 
 resource "aws_ecr_repository" "repository" {
   name = "assessmentecr"
