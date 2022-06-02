@@ -1,12 +1,21 @@
-module "eks_cluser" {
-  source                               = "terraform-aws-modules/eks/aws"
-  version                              = "17.1.0"
-  cluster_name                         = "kubeAssess"
-  cluster_version                      = "1.21"
-  subnets                              = module.vpc_assess.public_subnets
-  vpc_id                               = module.vpc_assess.vpc_id
-  cluster_endpoint_private_access      = true
+
+ module "eks" {
+ 
+  source          = "terraform-aws-modules/eks/aws"
+  version         = "17.24.0"
+  cluster_name    = "kubeAssess"
+  cluster_version = "1.21"
+  subnets         = module.vpc_assess.private_subnets
+  vpc_id = module.vpc_assess.vpc_id
   cluster_endpoint_public_access       = true
-  #manage_aws_auth                      = true
-  #map_roles                            = [ { "groups" = [ "system:masters" ], "rolearn" = var.iam_role_arn, "username" = "system:node:{{EC2PrivateDNSName}}" } ]
-  }
+
+  worker_groups = [
+    {
+      name                          = "worker-group-1"
+      instance_type                 = "t2.small"
+      asg_desired_capacity          = 3
+    }
+  ]
+}
+
+
