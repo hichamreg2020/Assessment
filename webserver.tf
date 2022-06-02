@@ -28,11 +28,13 @@ resource "kubernetes_deployment" "web" {
           port {
             container_port = 80
           }
-		env_from {
-                     secret_ref {
-                        name = "kubernetes_secret.assessment-db-credentials.name"
-                     }
-                 }
+	  env_from {
+            secret_ref {
+              name = "kubernetes_secret.assessment-db-credentials.name"
+              }
+          }
+	}
+      }
     }
   }
 }
