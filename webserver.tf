@@ -23,7 +23,7 @@ resource "kubernetes_deployment" "web" {
       }
       spec {
         container {
-          image = "${local.aws_ecr_url}:${random_uuid.tag.result}"
+          image = "${local.aws_ecr_url}:${local.tag}"
           name  = "web-container"
           port {
             container_port = 80
