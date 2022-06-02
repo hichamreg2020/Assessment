@@ -33,7 +33,6 @@ resource "kubernetes_deployment" "web" {
                         name = "kubernetes_secret.assessment-db-credentials.name"
                      }
                  }
-      }
     }
   }
 }
