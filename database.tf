@@ -36,10 +36,10 @@ resource "aws_security_group" "AssessmentSG" {
 resource "aws_db_instance" "assessment-db" {
   identifier             = "assessment-db"
   name                   = "assessment-db"
-  instance_class         = "db.t2.micro"
+  instance_class         = "db.t3.micro"
   allocated_storage      = 5
   engine                 = "postgres"
-  engine_version         = "13.5"
+  engine_version         = "13.4"
   skip_final_snapshot    = true
   publicly_accessible    = false
   vpc_security_group_ids = [aws_security_group.AssessmentSG.id]
