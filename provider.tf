@@ -18,6 +18,7 @@ provider "kubernetes" {
 }
 
 
+/*
 provider "docker" {
   registry_auth {
     address  = local.aws_ecr_url
@@ -27,3 +28,4 @@ provider "docker" {
   host     = "ssh://ec2-user@${local.dockerinstanceip}:22"
   ssh_opts = ["-i", "${local.dockerinstanceprivate_key}", "-o", "StrictHostKeyChecking=no", "-o", "UserKnownHostsFile=/dev/null"]
 }
+*/
