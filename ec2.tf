@@ -108,7 +108,7 @@ resource "aws_instance" "dockerinstance" {
 
   vpc_security_group_ids = [ aws_security_group.dockerinstance.id  ]
   subnet_id = module.vpc_assess.public_subnets[0]
-  iam_instance_profile = aws_iam_instance_profile.ec2_profile.name
+  iam_instance_profile = aws_iam_instance_profile.ec2_profile_Assessment.name
   associate_public_ip_address = true
 
   user_data = <<-EOF
