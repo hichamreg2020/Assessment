@@ -63,8 +63,8 @@ resource "kubernetes_secret" "assessment-db-credentials" {
   }
 
   data = {
-    db_username = var.db_username
-    db_password = "${random_string.Assessment-db-password.result}"
+    username = var.db_username
+    password = "${random_string.Assessment-db-password.result}"
   }
 
   type = "kubernetes.io/basic-auth"
