@@ -69,3 +69,7 @@ resource "kubernetes_secret" "assessment-db-credentials" {
 
   type = "kubernetes.io/basic-auth"
 }
+
+output "load_balancer_external_ip" {
+  value = "${kubernetes_service.web.load_balancer_ingress.0.ip}"
+}

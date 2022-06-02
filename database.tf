@@ -43,7 +43,7 @@ resource "aws_db_subnet_group" "assessment" {
 
 resource "aws_db_instance" "assessment-db" {
   identifier             = "assessment-db"
-  name                   = "assessmentdb"
+  db_name            = "assessmentdb"
   instance_class         = "db.t3.micro"
   allocated_storage      = 5
   engine                 = "postgres"
