@@ -112,7 +112,7 @@ resource "aws_key_pair" "dockerinstancesshkey" {
   public_key = tls_private_key.dockerinstancesshkey.public_key_openssh
 }
 
-/*
+*/
 
 resource "aws_instance" "dockerinstance" {
   ami           = data.aws_ami.amazon_linux_2.id
