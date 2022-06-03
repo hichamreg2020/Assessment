@@ -8,6 +8,7 @@
   subnets         = module.vpc_assess.private_subnets
   vpc_id = module.vpc_assess.vpc_id
   cluster_endpoint_public_access       = true
+  write_kubeconfig  = false
 
   worker_groups = [
     {
