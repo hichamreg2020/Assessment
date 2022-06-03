@@ -136,7 +136,7 @@ resource "aws_instance" "dockerinstance" {
     sudo usermod -a -G docker ec2-user
   EOF
 
-  key_name                = aws_key_pair.dockerinstancesshkey.key_name
+  #key_name                = aws_key_pair.dockerinstancesshkey.key_name
   monitoring              = true
   disable_api_termination = false
   ebs_optimized           = true
