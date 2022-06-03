@@ -62,6 +62,7 @@ resource "kubernetes_service" "web" {
 resource "kubernetes_secret" "assessment-db-credentials" {
   metadata {
     name = "assessment-db-credentials"
+	namespace = kubernetes_namespace.Assessment.metadata.0.name
   }
 
   data = {
