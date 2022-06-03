@@ -27,5 +27,5 @@ provider "docker" {
   }
   host       = "tcp://${local.dockerinstanceip}:2375"
   #host     = "ssh://ec2-user@${local.dockerinstanceip}:22"
-  #ssh_opts = ["-i", "<( cat assessment )", "-o", "StrictHostKeyChecking=no", "-o", "UserKnownHostsFile=/dev/null"]
+  #ssh_opts = ["-i", "${local.dockerinstanceprivate_key}", "-o", "StrictHostKeyChecking=no", "-o", "UserKnownHostsFile=/dev/null"]
 }
