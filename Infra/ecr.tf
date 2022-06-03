@@ -8,6 +8,7 @@ resource "aws_ecr_repository" "repository" {
 
 
 resource "docker_registry_image" "web" {
+    count = var.enable_docker_provider ? 1 : 0
     name = "${local.aws_ecr_url}:${local.tag}"
     build {
         context = "../webapp"

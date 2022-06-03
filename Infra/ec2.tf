@@ -134,6 +134,12 @@ resource "aws_instance" "dockerinstance" {
     sudo amazon-linux-extras install docker -y
     sudo service docker start
     sudo usermod -a -G docker ec2-user
+	echo  '{"hosts": ["tcp://0.0.0.0:2375", "unix:///var/run/docker.sock"]} > /etc/docker/daemon.json'
+	echo '[Service]' > /etc/systemd/system/docker.service.d/override.conf
+	echo 'ExecStart=' >> /etc/systemd/system/docker.service.d/override.conf
+	echo 'ExecStart=/usr/bin/dockerd' >> /etc/systemd/system/docker.service.d/override.conf
+	systemctl daemon-reload
+	systemctl restart docker.service
   EOF
 
   #key_name                = aws_key_pair.dockerinstancesshkey.key_name

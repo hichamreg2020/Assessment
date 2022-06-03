@@ -18,14 +18,17 @@ provider "kubernetes" {
 }
 
 
-
-provider "docker" {
-  registry_auth {
-    address  = "${data.aws_ecr_authorization_token.token.proxy_endpoint }"
-    username = "${data.aws_ecr_authorization_token.token.user_name}"
-    password = "${data.aws_ecr_authorization_token.token.password}"
+dynamic "dockerprovider" {
+    for_each = var.enable_docker_provider == true ? [1] : []
+    content {
+			provider "docker" {
+			  registry_auth {
+				address  = "${data.aws_ecr_authorization_token.token.proxy_endpoint }"
+				username = "${data.aws_ecr_authorization_token.token.user_name}"
+				password = "${data.aws_ecr_authorization_token.token.password}"
+			  }
+			  host       = "tcp://${local.dockerinstanceip}:2375"
+			}
+    }
   }
-  host       = "tcp://${local.dockerinstanceip}:2375"
-  #host     = "ssh://ec2-user@${local.dockerinstanceip}:22"
-  #ssh_opts = ["-i", "${local.dockerinstanceprivate_key}", "-o", "StrictHostKeyChecking=no", "-o", "UserKnownHostsFile=/dev/null"]
-}
+
