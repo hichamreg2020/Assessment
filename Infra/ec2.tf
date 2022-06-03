@@ -84,13 +84,13 @@ resource "aws_security_group" "dockerinstance" {
 
 }
 
-# Generate openssh key pair
+/*
 resource "tls_private_key" "dockerinstancesshkey" {
   algorithm   = "RSA"
   rsa_bits = "2048"  
 }
 
-# Download the private key locally to use for remote-exec scripts
+
 resource "local_file" "dockerinstancesshkey" { 
   filename = "${path.root}/dockerinstancesshkey.pem"
   content = tls_private_key.dockerinstancesshkey.private_key_pem
@@ -107,10 +107,12 @@ data "local_file" "dockerinstancesshkey" {
   ]
 }
 
-# Store public key in AWS
+
 resource "aws_key_pair" "dockerinstancesshkey" {
   public_key = tls_private_key.dockerinstancesshkey.public_key_openssh
 }
+
+/*
 
 resource "aws_instance" "dockerinstance" {
   ami           = data.aws_ami.amazon_linux_2.id

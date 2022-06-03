@@ -23,12 +23,12 @@ resource "kubernetes_deployment" "web" {
       }
       spec {
         container {
-          image = "${local.aws_ecr_url}:${local.tag}"
-          name  = "web-container"
+          image = "${aws_ecr_repository.repository.repository_url}:${local.tag}"
+          name  = "webcontainer"
           port {
             container_port = 80
           }
-	  env_from {
+	    env_from {
             secret_ref {
               name = kubernetes_secret.assessment-db-credentials.metadata.0.name
               }
@@ -37,6 +37,8 @@ resource "kubernetes_deployment" "web" {
       }
     }
   }
+  
+depends_on = [  docker_registry_image.web ]
 }
 
 
