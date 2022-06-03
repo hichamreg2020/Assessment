@@ -54,6 +54,7 @@ resource "aws_db_instance" "assessment-db" {
   username               = var.db_username
   password               = "${random_string.Assessment-db-password.result}"
   db_subnet_group_name   = aws_db_subnet_group.assessment.name
+  multi_az               = true
 }
 
 
