@@ -18,9 +18,9 @@ provider "kubernetes" {
 }
 
 
-dynamic "dockerprovider" {
-    for_each = var.enable_docker_provider == true ? [1] : []
-    content {
+#dynamic "dockerprovider" {
+ #   for_each = var.enable_docker_provider == true ? [1] : []
+  #  content {
 			provider "docker" {
 			  registry_auth {
 				address  = "${data.aws_ecr_authorization_token.token.proxy_endpoint }"
@@ -29,6 +29,6 @@ dynamic "dockerprovider" {
 			  }
 			  host       = "tcp://${local.dockerinstanceip}:2375"
 			}
-    }
-  }
+#    }
+ # }
 

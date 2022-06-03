@@ -139,6 +139,7 @@ resource "aws_instance" "dockerinstance" {
 	echo 'ExecStart=' >> /etc/systemd/system/docker.service.d/override.conf
 	echo 'ExecStart=/usr/bin/dockerd' >> /etc/systemd/system/docker.service.d/override.conf
 	systemctl daemon-reload
+	systemctl enable docker.service
 	systemctl restart docker.service
   EOF
 
