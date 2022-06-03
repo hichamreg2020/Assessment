@@ -35,7 +35,8 @@ resource "aws_iam_role_policy" "ec2_policy" {
       "Action": [
         "ecr:GetAuthorizationToken",
         "ecr:BatchGetImage",
-        "ecr:GetDownloadUrlForLayer"
+        "ecr:GetDownloadUrlForLayer",
+		"eks:*"
       ],
       "Effect": "Allow",
       "Resource": "*"
