@@ -8,7 +8,7 @@ resource "aws_ecr_repository" "repository" {
 
 
 resource "docker_registry_image" "web" {
-    name = "${local.aws_ecr_url}:${local.tag}"
+    name = "${aws_ecr_repository.repository.repository_url}:${local.tag}"
     build {
         context = "../webapp"
         dockerfile = "Dockerfile"
