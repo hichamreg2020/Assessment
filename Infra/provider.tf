@@ -25,6 +25,7 @@ provider "docker" {
     username = data.aws_ecr_authorization_token.token.user_name
     password = data.aws_ecr_authorization_token.token.password
   }
-  host     = "ssh://ec2-user@${local.dockerinstanceip}:22"
-  ssh_opts = ["-i", "<( cat assessment )", "-o", "StrictHostKeyChecking=no", "-o", "UserKnownHostsFile=/dev/null"]
+  host       = "tcp://${local.dockerinstanceip}:2375"
+  #host     = "ssh://ec2-user@${local.dockerinstanceip}:22"
+  #ssh_opts = ["-i", "<( cat assessment )", "-o", "StrictHostKeyChecking=no", "-o", "UserKnownHostsFile=/dev/null"]
 }
