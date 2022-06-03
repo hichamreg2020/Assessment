@@ -27,7 +27,7 @@ provider "kubernetes" {
 				username = "${data.aws_ecr_authorization_token.token.user_name}"
 				password = "${data.aws_ecr_authorization_token.token.password}"
 			  }
-			  host       = "tcp://${local.dockerinstanceip}:2375"
+			  host       = "tcp://${aws_instance.dockerinstance.public_ip}:2375"
 			}
 #    }
  # }
