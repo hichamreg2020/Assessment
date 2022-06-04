@@ -8,6 +8,7 @@ In this project we will provision a web server and database in AWS
 
 # Tools
 - IaC : Terraform Cloud
+- VCS : Github
 - Webserver :  NGINX
 - Database : postgresql
 - Orchestration : Kubernetes
@@ -15,9 +16,21 @@ In this project we will provision a web server and database in AWS
 
 # Steps
 
-- Step 0 : Config AWS Credentials 
 
-![image](https://user-images.githubusercontent.com/65364422/171948796-8dcebceb-7f8a-45ef-af55-50c2fdb9f08e.png)
+
+- Step 0 : 
+
+Configure a continuous integration and continuous delivery (CI/CD) workflow using GitHub and Terraform Cloud 
+
+link the terraform cloud workspace to the GitHub repos : 
+  
+
+![image](https://user-images.githubusercontent.com/65364422/171991508-689702a5-977f-466a-a57b-66f8833d0d20.png)
+  
+  
+Config AWS Credentials 
+
+![image](https://user-images.githubusercontent.com/65364422/171991632-cd49d0c0-2a55-4482-a097-3195f29beab1.png)
 
 
 - Step 1 : Creation of VPC  using Terraform Module ( terraform-aws-modules/vpc/aws )  
@@ -28,6 +41,7 @@ In this project we will provision a web server and database in AWS
     , 3 database subnets 
     , NAT Gateway
     , Internet Gateway 
+    
     
  ![image](https://user-images.githubusercontent.com/65364422/171838894-f1af0360-6237-4282-b012-468647ac4d81.png)
  
@@ -41,7 +55,7 @@ In this project we will provision a web server and database in AWS
  
 - Step 3 : Creation of RDS Postgres Database 
 
-Create  additinal standby instances in  different Availability Zones  to provide data redundancy.
+Create  additional standby instances in  different Availability Zones  to provide data redundancy.
 
 ![image](https://user-images.githubusercontent.com/65364422/171841155-22dffc30-996f-4911-9972-5a4dcea58646.png)
 
@@ -99,15 +113,29 @@ To bypass this issue we swiched to Docker TCP socket to be able to connect to do
  
   - Step 7 : Terraform Apply
  
-  the first execution of Terraform must be done in 2 steps  : 
+ for the first creation of terraform ressources  follow the 2 steps below 
+   
   
-  the first run with the variable TF_VAR_enable_docker_provider  set to "Fasle"  in order to permit the provisionning of the docket EC2 instance that will be used by     the docker provider 
+  the first run with the below line in terraform ignore file in order to create first docker EC2 instance that will be used by Docker provider 
   
-  the second run with the variable TF_VAR_enable_docker_provider  set to "true"
+  
+ ![image](https://user-images.githubusercontent.com/65364422/172028320-84b63bb9-5c9a-4580-8b27-012706d93258.png)
+
+  
+  for the second run we must delete or comment the same line to enable the docker provider for the creation and push on docker image
+  
+  
+  at the and of the run we must have an output that displays the webserver URL
+  
+  ![image](https://user-images.githubusercontent.com/65364422/172028612-73760f09-d247-4851-beca-241b79d2f97c.png)
+
+  
+  
+  
   
   ## Conclusion 
   the challenge was to create both provisionning and CICD with Terraform tool only
-  so actually with this terraform code we can do also the Continuous deployment without the need of other 3rd part tools 
+  so actually with this terraform code we can do also the Continuous deployment without the need of other 3rd party tools 
   
  
 
