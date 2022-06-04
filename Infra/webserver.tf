@@ -38,7 +38,6 @@ resource "kubernetes_deployment" "web" {
     }
   }
   
-depends_on = [  docker_registry_image.web ]
 }
 
 
