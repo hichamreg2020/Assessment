@@ -59,7 +59,7 @@ resource "aws_db_instance" "assessment-db" {
 
 
 resource "aws_secretsmanager_secret" "Assessment-db_secret" {
-  name = "Assessment-dbcredentials"
+  name = "Assessmentdbcredentials"
 }
 
 resource "aws_secretsmanager_secret_version" "secret" {
