@@ -113,23 +113,20 @@ To bypass this issue we swiched to Docker TCP socket to be able to connect to do
  
   - Step 7 : Terraform Apply
  
- for the first creation of terraform ressources  follow the 2 steps below 
+ because we are  using terraform cloud , for the first creation of terraform ressources  follow the 2 steps below 
    
+  First run : rename the docker.tf file ( remove .tf ext ) to ignone it ,   because we have to provision first an EC2 that contains Docker
+  Second Run : add the .tf extention to the file 
   
-  the first run with the below line in terraform ignore file in order to create first docker EC2 instance that will be used by Docker provider 
-  
-  
- ![image](https://user-images.githubusercontent.com/65364422/172028320-84b63bb9-5c9a-4580-8b27-012706d93258.png)
-
-  
-  for the second run we must delete or comment the same line to enable the docker provider for the creation and push on docker image
-  
+  NB : we tried to use the .terraformignore but it didn't work , so i renamed the file 
+   
   
   at the and of the run we must have an output that displays the webserver URL
   
   ![image](https://user-images.githubusercontent.com/65364422/172028612-73760f09-d247-4851-beca-241b79d2f97c.png)
 
   
+  final result : 
   
   
   
