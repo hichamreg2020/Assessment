@@ -63,6 +63,8 @@ Export of the DB credentials to AWS sercets manager
 
 ![image](https://user-images.githubusercontent.com/65364422/171952451-5d73d5d4-7ab9-4046-b86f-6d34218a162d.png)
 
+Create and attach a security group to the db which permits only inbound 5432 port from eks security group.
+
 - Step 4 : Configuration of Docker Provider
 
  An EC2 instance was provisionned in order to use Docker provider 
